@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رسالة خاصة</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000000;
+            font-family: 'Cairo', sans-serif;
+            color: #00ff00;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 50% 50%, 
+                    rgba(0, 255, 0, 0.1) 0%,
+                    rgba(0, 0, 0, 0.5) 100%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .container {
+            padding: 2.5rem;
+            background: rgba(0, 20, 0, 0.8);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #00ff00,
+                       inset 0 0 20px #00ff00;
+            max-width: 80%;
+            position: relative;
+            z-index: 1;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            animation: blink 0.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        p {
+            font-size: 2rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .hacked {
+            font-size: 2rem;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        .emoji {
+            font-size: 3rem;
+            margin: 1rem 0;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .name {
+            color: #00ffff;
+            font-weight: bold;
+            text-shadow: 0 0 15px #00ffff;
+            font-size: 2.5rem;
+            display: inline-block;
+            animation: glow 1.5s ease-in-out infinite;
+        }
+
+        .message {
+            font-size: 2.2rem;
+            color: #ff3333;
+            text-shadow: 0 0 15px #ff0000;
+            animation: shake 0.5s ease-in-out infinite;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-1deg); }
+            75% { transform: rotate(1deg); }
+        }
+
+        .by {
+            font-size: 1.8rem;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 0;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px #00ff00,
+                           inset 0 0 20px #00ff00;
+            }
+            50% {
+                box-shadow: 0 0 30px #00ff00,
+                           inset 0 0 30px #00ff00;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 0, 0.3);
+            animation: scanline 6s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .logout {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 3px solid #ff0000;
+            color: #ffffff;
+            text-shadow: 0 0 15px #ff0000;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: glowBorder 1.5s infinite;
+            letter-spacing: 1px;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .logout:hover {
+            background: rgba(255, 0, 0, 0.3);
+            transform: scale(1.1);
+            color: #ff0000;
+        }
+
+        @keyframes glowBorder {
+            0%, 100% {
+                box-shadow: 0 0 20px #ff0000,
+                           inset 0 0 20px #ff0000;
+            }
+            50% {
+                box-shadow: 0 0 30px #ff0000,
+                           inset 0 0 30px #ff0000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="matrix-bg"></div>
+    <div class="container">
+        <h1>! تم الاختراق !</h1>
+        <p class="by">بواسطة</p>
+        <p><span class="name">عمك أبو حسن</span></p>
+        <p class="message">يا معفن 🤮</p>
+        <div class="emoji">💀 ⚠️ ☠️</div>
+    </div>
+    <a href="goodbye.html" class="logout">تسجيل الخروج</a>
+
+    <script>
+        // إضافة تأثير Matrix في الخلفية
+        const canvas = document.createElement('canvas');
+        canvas.classList.add('matrix-bg');
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+        const drops = [];
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        for(let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = matrix[Math.floor(Math.random() * matrix.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 35);
+
+        // تحديث حجم الكانفاس عند تغيير حجم النافذة
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
